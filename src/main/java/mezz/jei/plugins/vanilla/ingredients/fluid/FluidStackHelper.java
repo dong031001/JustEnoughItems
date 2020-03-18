@@ -21,6 +21,8 @@ import mezz.jei.api.ingredients.IIngredientHelper;
 import mezz.jei.color.ColorGetter;
 
 public class FluidStackHelper implements IIngredientHelper<FluidStack> {
+	private Minecraft minecraft;
+
 	@Override
 	@Nullable
 	public FluidStack getMatch(Iterable<FluidStack> ingredients, FluidStack toMatch) {
@@ -73,7 +75,7 @@ public class FluidStackHelper implements IIngredientHelper<FluidStack> {
 		ResourceLocation fluidStill = attributes.getStillTexture(ingredient);
 		if (fluidStill != null) {
 			Minecraft minecraft = Minecraft.getInstance();
-			TextureAtlasSprite fluidStillSprite = minecraft.getTextureGetter(PlayerContainer.LOCATION_BLOCKS_TEXTURE).apply(fluidStill);
+			TextureAtlasSprite fluidStillSprite = minecraft.getAtlasSpriteGetter(PlayerContainer.LOCATION_BLOCKS_TEXTURE).apply(fluidStill);
 			int renderColor = attributes.getColor(ingredient);
 			return ColorGetter.getColors(fluidStillSprite, renderColor, 1);
 		}
